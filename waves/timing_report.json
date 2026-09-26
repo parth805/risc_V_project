@@ -1,0 +1,149 @@
+{
+  "clock_frequency_mhz": 100.0,
+  "clock_period_ns": 10.0,
+  "benchmarks": [
+    {
+      "matrix_size": "4x4",
+      "total_macs": 64,
+      "cpu_cycles": 845,
+      "cpu_latency_us": 8.45,
+      "cpu_macs_per_cycle": 0.0757,
+      "accel_cycles": 8,
+      "accel_latency_us": 0.08,
+      "accel_macs_per_cycle": 8.0,
+      "speedup_ratio": 105.6,
+      "latency_reduction_pct": 99.05
+    },
+    {
+      "matrix_size": "8x8",
+      "total_macs": 512,
+      "cpu_cycles": 6169,
+      "cpu_latency_us": 61.69,
+      "cpu_macs_per_cycle": 0.083,
+      "accel_cycles": 64,
+      "accel_latency_us": 0.64,
+      "accel_macs_per_cycle": 8.0,
+      "speedup_ratio": 96.4,
+      "latency_reduction_pct": 98.96
+    },
+    {
+      "matrix_size": "16x16",
+      "total_macs": 4096,
+      "cpu_cycles": 47153,
+      "cpu_latency_us": 471.53,
+      "cpu_macs_per_cycle": 0.0869,
+      "accel_cycles": 512,
+      "accel_latency_us": 5.12,
+      "accel_macs_per_cycle": 8.0,
+      "speedup_ratio": 92.1,
+      "latency_reduction_pct": 98.91
+    },
+    {
+      "matrix_size": "32x32",
+      "total_macs": 32768,
+      "cpu_cycles": 368737,
+      "cpu_latency_us": 3687.37,
+      "cpu_macs_per_cycle": 0.0889,
+      "accel_cycles": 4096,
+      "accel_latency_us": 40.96,
+      "accel_macs_per_cycle": 8.0,
+      "speedup_ratio": 90.0,
+      "latency_reduction_pct": 98.89
+    },
+    {
+      "matrix_size": "64x64",
+      "total_macs": 262144,
+      "cpu_cycles": 2916545,
+      "cpu_latency_us": 29165.45,
+      "cpu_macs_per_cycle": 0.0899,
+      "accel_cycles": 32768,
+      "accel_latency_us": 327.68,
+      "accel_macs_per_cycle": 8.0,
+      "speedup_ratio": 89.0,
+      "latency_reduction_pct": 98.88
+    }
+  ],
+  "fsm_timing_trace": [
+    {
+      "cycle": 0,
+      "time_ns": 0,
+      "state": "IDLE",
+      "step_k": 0,
+      "busy": 0,
+      "done": 0,
+      "mac_en": 0
+    },
+    {
+      "cycle": 1,
+      "time_ns": 10,
+      "state": "LOAD",
+      "step_k": 0,
+      "busy": 1,
+      "done": 0,
+      "mac_en": 0
+    },
+    {
+      "cycle": 2,
+      "time_ns": 20,
+      "state": "COMPUTE",
+      "step_k": 0,
+      "busy": 1,
+      "done": 0,
+      "mac_en": 1
+    },
+    {
+      "cycle": 3,
+      "time_ns": 30,
+      "state": "COMPUTE",
+      "step_k": 1,
+      "busy": 1,
+      "done": 0,
+      "mac_en": 1
+    },
+    {
+      "cycle": 4,
+      "time_ns": 40,
+      "state": "COMPUTE",
+      "step_k": 2,
+      "busy": 1,
+      "done": 0,
+      "mac_en": 1
+    },
+    {
+      "cycle": 5,
+      "time_ns": 50,
+      "state": "COMPUTE",
+      "step_k": 3,
+      "busy": 1,
+      "done": 0,
+      "mac_en": 1
+    },
+    {
+      "cycle": 6,
+      "time_ns": 60,
+      "state": "ACTIVATE",
+      "step_k": 0,
+      "busy": 1,
+      "done": 0,
+      "mac_en": 0
+    },
+    {
+      "cycle": 7,
+      "time_ns": 70,
+      "state": "WRITEBACK",
+      "step_k": 0,
+      "busy": 1,
+      "done": 0,
+      "mac_en": 0
+    },
+    {
+      "cycle": 8,
+      "time_ns": 80,
+      "state": "DONE",
+      "step_k": 0,
+      "busy": 0,
+      "done": 1,
+      "mac_en": 0
+    }
+  ]
+}

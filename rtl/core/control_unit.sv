@@ -49,8 +49,9 @@ module control_unit (
     case (opcode)
 
       // ======================================================================
-      // R-Type
+      // R-Type: Base ALU (funct7 == 0 / 0x20) & RV32M Extension (funct7 == 1)
       // ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+      // MUL, MULH, MULHSU, MULHU, DIV, DIVU, REM, REMU
       // ======================================================================
       OPCODE_OP: begin
 
@@ -59,51 +60,43 @@ module control_unit (
         alu_src_b_sel = 1'b0;
         wb_src_sel    = 2'b00;
 
-        case (funct3)
-
-          3'b000: begin
-            if (funct7[5])
-              alu_op = ALU_SUB;
-            else
-              alu_op = ALU_ADD;
-          end
-
-          3'b001: begin
-            alu_op = ALU_SLL;
-          end
-
-          3'b010: begin
-            alu_op = ALU_SLT;
-          end
-
-          3'b011: begin
-            alu_op = ALU_SLTU;
-          end
-
-          3'b100: begin
-            alu_op = ALU_XOR;
-          end
-
-          3'b101: begin
-            if (funct7[5])
-              alu_op = ALU_SRA;
-            else
-              alu_op = ALU_SRL;
-          end
-
-          3'b110: begin
-            alu_op = ALU_OR;
-          end
-
-          3'b111: begin
-            alu_op = ALU_AND;
-          end
-
-          default: begin
-            alu_op = ALU_ADD;
-          end
-
-        endcase
+        if (funct7 == 7'b0000001) begin
+          // RV32M Extension
+          case (funct3)
+            3'b000:  alu_op = ALU_MUL;
+            3'b001:  alu_op = ALU_MULH;
+            3'b010:  alu_op = ALU_MULHSU;
+            3'b011:  alu_op = ALU_MULHU;
+            3'b100:  alu_op = ALU_DIV;
+            3'b101:  alu_op = ALU_DIVU;
+            3'b110:  alu_op = ALU_REM;
+            3'b111:  alu_op = ALU_REMU;
+            default: alu_op = ALU_ADD;
+          endcase
+        end else begin
+          // Standard RV32I R-Type
+          case (funct3)
+            3'b000: begin
+              if (funct7[5])
+                alu_op = ALU_SUB;
+              else
+                alu_op = ALU_ADD;
+            end
+            3'b001:  alu_op = ALU_SLL;
+            3'b010:  alu_op = ALU_SLT;
+            3'b011:  alu_op = ALU_SLTU;
+            3'b100:  alu_op = ALU_XOR;
+            3'b101: begin
+              if (funct7[5])
+                alu_op = ALU_SRA;
+              else
+                alu_op = ALU_SRL;
+            end
+            3'b110:  alu_op = ALU_OR;
+            3'b111:  alu_op = ALU_AND;
+            default: alu_op = ALU_ADD;
+          endcase
+        end
       end
 
 
