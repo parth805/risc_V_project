@@ -39,7 +39,7 @@ module ai_accelerator #(
     logic signed [DATA_WIDTH-1:0] b_reg [0:MATRIX_SIZE-1][0:MATRIX_SIZE-1];
     logic                         act_en_reg;
 
-    // Memory-mapped CSR registers
+    // Memory-mapped CSR registersx
     logic [31:0] reg_addr_a;
     logic [31:0] reg_addr_b;
     logic [31:0] reg_addr_c;
