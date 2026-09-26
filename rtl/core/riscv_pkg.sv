@@ -1,6 +1,6 @@
 // ============================================================================
 // File: rtl/core/riscv_pkg.sv
-// Description: RISC-V RV32I Architecture Definitions & Control Enums
+// Description: RISC-V RV32IM Architecture Definitions & Control Enums
 // ============================================================================
 
 package riscv_pkg;
@@ -8,7 +8,7 @@ package riscv_pkg;
   // --------------------------------------------------------------------------
   // RV32I Base Opcodes (instr[6:0])
   // --------------------------------------------------------------------------
-  localparam bit [6:0] OPCODE_OP       = 7'b0110011; // R-Type: ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+  localparam bit [6:0] OPCODE_OP       = 7'b0110011; // R-Type: Base ALU & M-Extension
   localparam bit [6:0] OPCODE_OP_IMM   = 7'b0010011; // I-Type: ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI
   localparam bit [6:0] OPCODE_LOAD     = 7'b0000011; // I-Type: LB, LH, LW, LBU, LHU
   localparam bit [6:0] OPCODE_STORE    = 7'b0100011; // S-Type: SB, SH, SW
@@ -21,20 +21,29 @@ package riscv_pkg;
   localparam bit [6:0] OPCODE_FENCE    = 7'b0001111; // I-Type: FENCE
 
   // --------------------------------------------------------------------------
-  // ALU Operations Enum
+  // ALU Operations Enum (RV32I + RV32M Extension)
   // --------------------------------------------------------------------------
-  typedef enum logic [3:0] {
-    ALU_ADD  = 4'b0000,
-    ALU_SUB  = 4'b0001,
-    ALU_SLL  = 4'b0010,
-    ALU_SLT  = 4'b0011,
-    ALU_SLTU = 4'b0100,
-    ALU_XOR  = 4'b0101,
-    ALU_SRL  = 4'b0110,
-    ALU_SRA  = 4'b0111,
-    ALU_OR   = 4'b1000,
-    ALU_AND  = 4'b1001,
-    ALU_PASS = 4'b1010  // Pass Operand B directly
+  typedef enum logic [4:0] {
+    ALU_ADD    = 5'b00000,
+    ALU_SUB    = 5'b00001,
+    ALU_SLL    = 5'b00010,
+    ALU_SLT    = 5'b00011,
+    ALU_SLTU   = 5'b00100,
+    ALU_XOR    = 5'b00101,
+    ALU_SRL    = 5'b00110,
+    ALU_SRA    = 5'b00111,
+    ALU_OR     = 5'b01000,
+    ALU_AND    = 5'b01001,
+    ALU_PASS   = 5'b01010,  // Pass Operand B directly
+    // RV32M Extension
+    ALU_MUL    = 5'b01011,  // Signed x Signed (Lower 32)
+    ALU_MULH   = 5'b01100,  // Signed x Signed (Upper 32)
+    ALU_MULHSU = 5'b01101,  // Signed x Unsigned (Upper 32)
+    ALU_MULHU  = 5'b01110,  // Unsigned x Unsigned (Upper 32)
+    ALU_DIV    = 5'b01111,  // Signed Divide
+    ALU_DIVU   = 5'b10000,  // Unsigned Divide
+    ALU_REM    = 5'b10001,  // Signed Remainder
+    ALU_REMU   = 5'b10010   // Unsigned Remainder
   } alu_op_e;
 
   // --------------------------------------------------------------------------

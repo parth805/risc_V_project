@@ -1,6 +1,6 @@
-﻿# Simulation binaries & temp files
+# Simulation binaries & temp files
 sim/
-sim_*
+/sim_*
 *.vvp
 *.log
 __pycache__/

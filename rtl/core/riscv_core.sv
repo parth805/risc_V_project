@@ -298,7 +298,7 @@ always_ff @(posedge clk or negedge rst_n) begin
     mem_wb_wb_src_sel <= 2'b00;
   end else begin
     mem_wb_alu_res    <= ex_mem_alu_res;
-    mem_wb_load_data  <= ex_mem_mem_read ? data_rdata : 32'd0;
+    mem_wb_load_data  <= ex_mem_mem_read ? load_data : 32'd0;
     mem_wb_pc_plus4   <= ex_mem_pc_plus4;
     mem_wb_rd         <= ex_mem_rd;
     mem_wb_reg_write  <= ex_mem_reg_write;
