@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVM Verification & Coverage Report - RISC-V AI Accelerator</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --pass: #22c55e;
+            --fail: #ef4444;
+            --border: #334155;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 30px;
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+        }
+        .badge {
+            display: inline-block;
+            background: var(--pass);
+            color: #000;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 18px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+        .metric {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--pass);
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+        th {
+            color: #94a3b8;
+        }
+        pre {
+            background: #090d16;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>UVM Verification & Coverage Report</h1>
+        <p>4x4 INT8 Systolic AI Accelerator Coprocessor | RV32IM SoC Platform</p>
+        <div class="badge">STATUS: ALL 75 UVM SEQUENCES PASSED (100.00% MATCH RATE)</div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Scoreboard Verification</h3>
+            <div class="metric">100.00%</div>
+            <p><strong>Total Transactions:</strong> 75</p>
+            <p><strong>Passed:</strong> 75 | <strong>Failed:</strong> 0</p>
+            <p><strong>Execution Latency:</strong> 8.00 Cycles / Matrix</p>
+        </div>
+
+        <div class="card">
+            <h3>Functional Coverage</h3>
+            <div class="metric">100.00%</div>
+            <p><strong>Total Coverage Bins:</strong> 18 / 18</p>
+            <p><strong>Hit Coverage:</strong> 100%</p>
+            <p><strong>Simulation Wall Time:</strong> 0.29s</p>
+        </div>
+
+        <div class="card">
+            <h3>Verified Sequences</h3>
+            <ul>
+                <li>Extreme Limits (INT8 Boundary -128, +127)</li>
+                <li>Identity Matrix Multiplication</li>
+                <li>Zero Matrix Multiplication</li>
+                <li>ReLU Hardware Activation & Clipping</li>
+                <li>Sparse Matrix (75% Sparsity)</li>
+                <li>Constrained-Random Stress Sequences</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Functional Coverage Detail Breakdown</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Coverage Category</th>
+                    <th>Coverage Group / Bin</th>
+                    <th>Hit Count</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Activation Mode</td><td>Linear (Bypass) Activation</td><td>34 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Activation Mode</td><td>ReLU Non-Linear Activation</td><td>41 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix A Operands</td><td>Negative Range [-128, -1]</td><td>632 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix A Operands</td><td>Zero [0]</td><td>72 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix A Operands</td><td>Positive Range [1, 127]</td><td>496 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix A Operands</td><td>Min Limit Corner (-128)</td><td>26 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix A Operands</td><td>Max Limit Corner (+127)</td><td>28 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix B Operands</td><td>Negative Range [-128, -1]</td><td>441 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix B Operands</td><td>Zero [0]</td><td>183 hits</td><td><span style="color:var(--pass raw);">COVERED</span></td></tr>
+                <tr><td>Matrix B Operands</td><td>Positive Range [1, 127]</td><td>576 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix B Operands</td><td>Min Limit Corner (-128)</td><td>24 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Matrix B Operands</td><td>Max Limit Corner (+127)</td><td>27 hits</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Test Modes</td><td>Extreme Limits Boundary</td><td>3 sequences</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Test Modes</td><td>Identity Matrix</td><td>4 sequences</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Test Modes</td><td>Zero Matrix</td><td>4 sequences</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Test Modes</td><td>Sparse Matrix</td><td>6 sequences</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>Test Modes</td><td>Constrained Random</td><td>58 sequences</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+                <tr><td>FSM Transitions</td><td>Full IDLE-LOAD-COMPUTE-ACCUM-ACT-DONE Loop</td><td>75 loops</td><td><span style="color:var(--pass);">COVERED</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card" style="margin-top: 25px;">
+        <h3>UVM Simulation Output Log</h3>
+        <pre>VCD info: dumpfile waves/tb_accel_uvm.vcd opened for output.
+
+================================================================================
+   STARTING UVM VERIFICATION SUITE FOR RISC-V AI ACCELERATOR SOC                
+================================================================================
+
+[UVM TEST] >>> Running Extreme Limits Sequence (Signed INT8 Overflow Boundaries)...
+[UVM TEST] >>> Running Identity Matrix Sequence...
+[UVM TEST] >>> Running Zero Matrix Sequence...
+[UVM TEST] >>> Running ReLU Stress & Negative Value Clipping Sequence...
+[UVM TEST] >>> Running Sparse Matrix Sequence (75% Sparsity)...
+[UVM TEST] >>> Running Constrained-Random Stimulus Sequence (50 Iterations)...
+
+================================================================================
+                       UVM SCOREBOARD FINAL REPORT                             
+================================================================================
+ Total Transactions Checked : 75
+ Transactions Passed        : 75
+ Transactions Failed        : 0
+ Scoreboard Match Rate      : 100.00%
+ Execution Latency (Cycles) : Min = 8, Max = 8, Avg = 8.00
+ STATUS                     : >>> ALL UVM TESTS PASSED [100.00% BIT-EXACT] <<<
+================================================================================
+
+================================================================================
+                   UVM FUNCTIONAL COVERAGE REPORT                              
+================================================================================
+ [ACTIVATION MODES]
+   - Linear (Bypass) Hits : 34
+   - ReLU Enabled Hits    : 41
+ [OPERAND VALUE COVERAGE (A-MATRIX)]
+   - Negative Values Hits : 632
+   - Zero Values Hits     : 72
+   - Positive Values Hits : 496
+   - Min Limit (-128) Hits: 26
+   - Max Limit (+127) Hits: 28
+ [OPERAND VALUE COVERAGE (B-MATRIX)]
+   - Negative Values Hits : 441
+   - Zero Values Hits     : 183
+   - Positive Values Hits : 576
+   - Min Limit (-128) Hits: 24
+   - Max Limit (+127) Hits: 27
+ [TEST MODE COVERAGE]
+   - Extreme Limits Hits  : 3
+   - Identity Matrix Hits : 4
+   - Zero Matrix Hits     : 4
+   - Sparse Matrix Hits   : 6
+   - Random Mode Hits     : 58
+ [FSM TRANSITIONS]
+   - Full FSM Loop Cycles : 75 transitions
+--------------------------------------------------------------------------------
+ OVERALL FUNCTIONAL COVERAGE: 100.00% (18 / 18 Bins Covered)
+================================================================================
+
+P:\project 1\tb\uvm\tb_accel_uvm_runner.sv:361: $finish called at 8315000 (1ps)
+</pre>
+    </div>
+</body>
+</html>

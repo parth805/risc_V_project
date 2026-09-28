@@ -118,21 +118,20 @@ nn_demo:
 	$(PYTHON) python/sim_nn_demo.py
 
 # ------------------------------------------------------------------------------
-# Waveform Viewing Targets
+# UVM Verification Targets
 # ------------------------------------------------------------------------------
-wave_soc:
-	gtkwave $(WAVES_DIR)/tb_soc_top.vcd &
+uvm:
+	$(PYTHON) python/run_uvm_suite.py
 
-wave_accel:
-	gtkwave $(WAVES_DIR)/tb_accelerator.vcd &
+test_uvm: uvm
 
-wave_mac:
-	gtkwave $(WAVES_DIR)/tb_mac.vcd &
+wave_uvm:
+	gtkwave $(WAVES_DIR)/tb_accel_uvm.vcd &
 
 # ------------------------------------------------------------------------------
 # Clean Target
 # ------------------------------------------------------------------------------
 clean:
-	rm -rf $(SIM_DIR) $(WAVES_DIR)/*.vcd
+	rm -rf $(SIM_DIR) $(WAVES_DIR)/*.vcd reports/*.html
 
-.PHONY: all compile compile_mac compile_accel compile_core compile_soc test test_mac test_accel test_core test_soc test_all sim_py_soc golden benchmark telemetry clean
+.PHONY: all compile compile_mac compile_accel compile_core compile_soc test test_mac test_accel test_core test_soc test_all sim_py_soc golden benchmark telemetry nn_demo uvm test_uvm wave_uvm clean
