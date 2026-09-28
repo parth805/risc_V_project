@@ -10,7 +10,7 @@
 module soc_sram #(
     parameter int MEM_SIZE_BYTES = 16384,            // 16 KB
     parameter int NUM_WORDS      = MEM_SIZE_BYTES / 4, // 4096 32-bit words
-    parameter string INIT_FILE   = ""
+    parameter     INIT_FILE      = ""
 )(
     input  logic        clk,
     input  logic        rst_n,

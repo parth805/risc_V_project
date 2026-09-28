@@ -16,7 +16,7 @@ import accelerator_pkg::*;
 module soc_top #(
     parameter bit [31:0] RESET_ADDR     = 32'h0000_0000,
     parameter int        MEM_SIZE_BYTES = 16384,
-    parameter string     INIT_FILE      = ""
+    parameter            INIT_FILE      = ""
 )(
     input  logic        clk,
     input  logic        rst_n,

@@ -114,6 +114,9 @@ benchmark:
 telemetry:
 	$(PYTHON) scripts/generate_timing_report.py
 
+nn_demo:
+	$(PYTHON) python/sim_nn_demo.py
+
 # ------------------------------------------------------------------------------
 # Waveform Viewing Targets
 # ------------------------------------------------------------------------------

@@ -63,6 +63,14 @@ module tb_soc_top;
         else        cycle_count <= cycle_count + 1;
     end
 
+    // Trace first 80 cycles
+    always @(posedge clk) begin
+        if (rst_n && cycle_count < 80) begin
+            $display("[CYCLE %2d] PC: 0x%08h | MemReq: %b Addr: 0x%08h WData: 0x%08h | AccDone: %b", 
+                     cycle_count, dbg_pc, dbg_data_req, dbg_data_addr, dbg_data_wdata, accel_done);
+        end
+    end
+
     // =========================================================================
     // Test Stimulus & Verification Sequence
     // =========================================================================
@@ -96,24 +104,24 @@ module tb_soc_top;
         // ---------------------------------------------------------------------
         $display("\n--- 1. VERIFYING RV32M MULTIPLIER / DIVIDER EXECUTION ---");
         // x3 = 120 (0x78), x4 = 10, x5 = 0
-        if (dut.u_riscv_core.u_regfile.registers[3] === 32'd120) begin
-            $display("  [PASS] MUL  instruction: 12 * 10 = %0d (Expected: 120)", dut.u_riscv_core.u_regfile.registers[3]);
+        if (dut.u_riscv_core.u_regfile.regs[3] === 32'd120) begin
+            $display("  [PASS] MUL  instruction: 12 * 10 = %0d (Expected: 120)", dut.u_riscv_core.u_regfile.regs[3]);
         end else begin
-            $display("  [FAIL] MUL  instruction: Got %0d, Expected: 120", dut.u_riscv_core.u_regfile.registers[3]);
+            $display("  [FAIL] MUL  instruction: Got %0d, Expected: 120", dut.u_riscv_core.u_regfile.regs[3]);
             error_count++;
         end
 
-        if (dut.u_riscv_core.u_regfile.registers[4] === 32'd10) begin
-            $display("  [PASS] DIV  instruction: 120 / 12 = %0d (Expected: 10)", dut.u_riscv_core.u_regfile.registers[4]);
+        if (dut.u_riscv_core.u_regfile.regs[4] === 32'd10) begin
+            $display("  [PASS] DIV  instruction: 120 / 12 = %0d (Expected: 10)", dut.u_riscv_core.u_regfile.regs[4]);
         end else begin
-            $display("  [FAIL] DIV  instruction: Got %0d, Expected: 10", dut.u_riscv_core.u_regfile.registers[4]);
+            $display("  [FAIL] DIV  instruction: Got %0d, Expected: 10", dut.u_riscv_core.u_regfile.regs[4]);
             error_count++;
         end
 
-        if (dut.u_riscv_core.u_regfile.registers[5] === 32'd0) begin
-            $display("  [PASS] REM  instruction: 120 %% 10 = %0d (Expected: 0)", dut.u_riscv_core.u_regfile.registers[5]);
+        if (dut.u_riscv_core.u_regfile.regs[5] === 32'd0) begin
+            $display("  [PASS] REM  instruction: 120 %% 10 = %0d (Expected: 0)", dut.u_riscv_core.u_regfile.regs[5]);
         end else begin
-            $display("  [FAIL] REM  instruction: Got %0d, Expected: 0", dut.u_riscv_core.u_regfile.registers[5]);
+            $display("  [FAIL] REM  instruction: Got %0d, Expected: 0", dut.u_riscv_core.u_regfile.regs[5]);
             error_count++;
         end
 
