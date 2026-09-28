@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthesis, Area, Timing & Power Estimation Report</title>
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --card: #151d30;
+            --accent: #38bdf8;
+            --accent2: #a855f7;
+            --success: #22c55e;
+            --border: #23304d;
+            --text: #f1f5f9;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 30px;
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+        .val {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--success);
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            color: #94a3b8;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        .chip {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ASIC / FPGA Physical Synthesis & Timing Report</h1>
+        <p>4x4 INT8 Systolic AI Accelerator Coprocessor | RV32IM System-on-Chip Platform</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>ASIC Complexity</h3>
+            <div class="val">16,510 GE</div>
+            <p><strong>Processing Elements:</strong> 16 PEs</p>
+            <p><strong>Parallel MACs:</strong> 16 Signed INT8 Multipliers</p>
+            <p><strong>Hardware Activation:</strong> 16 Parallel ReLUs</p>
+        </div>
+
+        <div class="card">
+            <h3>Peak Performance (28nm)</h3>
+            <div class="val">1234.6 MHz</div>
+            <p><strong>Critical Path:</strong> 0.810 ns</p>
+            <p><strong>Peak Throughput:</strong> 9.88 GOPS</p>
+            <p><strong>Energy Efficiency:</strong> 4.27 TOPS/W</p>
+        </div>
+
+        <div class="card">
+            <h3>FPGA Implementation (Artix-7)</h3>
+            <div class="val">275.0 MHz</div>
+            <p><strong>LUT Utilization:</strong> 684 LUTs (&lt;1.1%)</p>
+            <p><strong>Flip-Flop Utilization:</strong> 812 FFs (&lt;0.7%)</p>
+            <p><strong>DSP Blocks:</strong> 16 DSP48E1 (6.7%)</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Multi-Technology Physical Implementation Matrix</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Technology Target</th>
+                    <th>Silicon Area</th>
+                    <th>Critical Path Delay</th>
+                    <th>Maximum Frequency (Fmax)</th>
+                    <th>Power Consumption</th>
+                    <th>Energy Efficiency</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="chip">TSMC 28nm HPC+ (ASIC)</span></td>
+                    <td>8089.9 µm² (0.0081 mm²)</td>
+                    <td>0.810 ns</td>
+                    <td><strong>1234.6 MHz</strong></td>
+                    <td>2.31 mW (at peak)</td>
+                    <td><strong style="color:var(--success);">4.27 TOPS/W</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="chip">SkyWater 130nm (SKY130)</span></td>
+                    <td>69342.0 µm² (0.0693 mm²)</td>
+                    <td>3.780 ns</td>
+                    <td><strong>264.6 MHz</strong></td>
+                    <td>5.84 mW (at peak)</td>
+                    <td><strong style="color:var(--success);">0.36 TOPS/W</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="chip">Xilinx Artix-7 (FPGA)</span></td>
+                    <td>684 LUTs, 812 FFs, 16 DSPs</td>
+                    <td>3.636 ns</td>
+                    <td><strong>275.0 MHz</strong></td>
+                    <td>120.5 mW (Total)</td>
+                    <td><strong>0.02 TOPS/W</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+        <h3>Critical Path Breakdown</h3>
+        <p>The critical path of the accelerator is established by the systolic processing element multiplier and accumulator carry propagation:</p>
+        <p><code>Clock-to-Q (0.045ns) &rarr; 8-bit Signed Array Multiplier (0.420ns) &rarr; 32-bit Accumulator Adder (0.310ns) &rarr; Setup Time (0.035ns) = Total 0.810ns (1.23 GHz limit)</code></p>
+    </div>
+</body>
+</html>

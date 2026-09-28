@@ -1,0 +1,41 @@
+# ==============================================================================
+# File: synthesis/yosys_synth.ys
+# Description: Yosys Open-Source Synthesis Script for AI Accelerator
+# Target: Generic ASIC Standard Cells / SkyWater SKY130 / Xilinx FPGA
+# ==============================================================================
+
+# 1. Read SystemVerilog files with SV2012 support
+read_verilog -sv rtl/accelerator/accelerator_pkg.sv
+read_verilog -sv rtl/accelerator/mac.sv
+read_verilog -sv rtl/accelerator/pe.sv
+read_verilog -sv rtl/accelerator/accumulator.sv
+read_verilog -sv rtl/accelerator/relu.sv
+read_verilog -sv rtl/accelerator/controller.sv
+read_verilog -sv rtl/accelerator/systolic_array.sv
+read_verilog -sv rtl/accelerator/accelerator.sv
+
+# 2. Elaborate hierarchy with top-level accelerator
+hierarchy -top ai_accelerator
+
+# 3. High-level synthesis optimizations
+proc
+opt
+fsm
+opt
+memory
+opt
+
+# 4. Map arithmetic operators and MAC units
+techmap
+opt
+
+# 5. FPGA or ASIC Gate Mapping
+# For generic gate estimation:
+synth -top ai_accelerator
+
+# 6. Report gate statistics and area summary
+stat -liberty ../tech/sky130_fd_sc_hd__tt_025C_1v80.lib
+stat
+
+# 7. Write synthesized netlist
+write_verilog -noattr sim/synthesized_netlist.v
