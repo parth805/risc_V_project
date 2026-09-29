@@ -131,7 +131,8 @@ test_uvm: uvm
 synth:
 	$(PYTHON) python/synth_analysis.py
 
-synth_report: synth
+dashboard:
+	$(PYTHON) python/launch_dashboard.py
 
 # ------------------------------------------------------------------------------
 # Clean Target
@@ -139,4 +140,4 @@ synth_report: synth
 clean:
 	rm -rf $(SIM_DIR) $(WAVES_DIR)/*.vcd reports/*.html
 
-.PHONY: all compile compile_mac compile_accel compile_core compile_soc test test_mac test_accel test_core test_soc test_all sim_py_soc golden benchmark telemetry nn_demo uvm test_uvm wave_uvm synth synth_report clean
+.PHONY: all compile compile_mac compile_accel compile_core compile_soc test test_mac test_accel test_core test_soc test_all sim_py_soc golden benchmark telemetry nn_demo uvm test_uvm wave_uvm synth synth_report dashboard clean
