@@ -325,5 +325,29 @@ Simulation generates `.vcd` waveform dumps in [`waves/`](file:///p:/project%201/
 
 ---
 
+## 🏆 12. Master Project Portfolio, Resume Bullets & Technical Interview Guide
+📖 **Full Technical Study Guide & Portfolio Document:** [`MASTER_PORTFOLIO_AND_INTERVIEW_GUIDE.md`](MASTER_PORTFOLIO_AND_INTERVIEW_GUIDE.md) (also in [`docs/MASTER_PORTFOLIO_AND_INTERVIEW_GUIDE.md`](docs/MASTER_PORTFOLIO_AND_INTERVIEW_GUIDE.md))
+
+### 🎯 4 High-Impact Resume Bullets (Google X-Y-Z Format)
+1. **RTL Design & Architecture (Silicon / FPGA / ASIC Design Engineer):**
+   > *"Architected and synthesized a synthesizable 32-bit RISC-V (RV32IM) SoC integrated with a 4x4 INT8 systolic AI coprocessor in SystemVerilog, achieving a **193.1x speedup** and **99.5% runtime reduction** for edge 2-layer MLP neural network inference over scalar execution by designing a 16-PE spatial parallel MAC datapath with zero-cycle hardware ReLU activation."*
+2. **System Integration & Pipeline Microarchitecture (SoC / Processor Architect):**
+   > *"Engineered a 5-stage hazard-resilient RV32IM CPU core and 32-bit crossbar interconnect, achieving **deterministic 8-cycle matrix multiplication latency** and **8.0 MACs/cycle throughput** by implementing memory-mapped CSR control, dual-port 16KB SRAM routing, EX/MEM forwarding networks, and hardware branch penalty mitigation."*
+3. **UVM Functional Verification (Verification Engineer / DV):**
+   > *"Built a comprehensive Universal Verification Methodology (UVM) constrained-random testbench with automated scoreboards, achieving **100.00% functional coverage** across 18 bins and **zero mismatches on 75 regression suites** by developing bit-exact NumPy/C golden predictors, edge-case signed overflow vectors (-128/+127), and sparsity stress tests."*
+4. **Physical Implementation & Timing Closure (Physical Design / CAD Engineer):**
+   > *"Characterized multi-technology physical ASIC and FPGA implementations, establishing an Fmax of **1.23 GHz** and **4.27 TOPS/W** energy efficiency in TSMC 28nm HPC+ (8,089.9 um²), and generated SkyWater 130nm hierarchical GDSII layouts with concentric VDD/VSS power rings, Met4/5 power meshes, and wire-bond pad rings using KLayout and Yosys."*
+
+---
+
+### 🎙️ Elevator Pitches
+- **30-Second Pitch:**
+  > *"I designed, verified, and characterized a complete System-on-Chip that bridges the gap between low-power edge microcontrollers and real-time AI inference. By integrating a custom 5-stage pipelined RISC-V core with a dedicated 4x4 INT8 systolic array accelerator and zero-overhead hardware ReLU, the SoC achieves a **193x speedup** and **99.5% runtime reduction** over scalar execution for neural network inference. I verified the design using an enterprise-grade UVM testbench with 100% functional coverage, closed timing at **1.23 GHz** in TSMC 28nm delivering **4.27 TOPS/Watt**, and implemented the physical GDSII layout in SkyWater 130nm."*
+
+- **90-Second Comprehensive Pitch:**
+  > *"Standard embedded CPUs face severe von Neumann memory bottlenecks when running deep neural networks — executing up to 10 load, store, and scalar arithmetic instructions for every single Multiply-Accumulate operation. To solve this, I designed and characterized an end-to-end SoC featuring a 32-bit pipelined RV32IM RISC-V host CPU coupled to a synthesizable 4x4 INT8 systolic coprocessor. By keeping weights stationary in 16 spatial processing elements and streaming activations across systolic data channels, we reduced memory bandwidth requirements from cubic to quadratic complexity. Hardware non-linear ReLU activation is evaluated directly at the output stage with zero instruction overhead, delivering a fixed 8-cycle latency per 4x4 tile and an arithmetic throughput of 8.0 MACs/cycle — outperforming standard scalar RISC-V loops by **105.6x on matrix multiplication** and **193.1x on an end-to-end 2-layer neural network classifier**. To guarantee enterprise-grade quality, I built a complete UVM constrained-random verification environment that verified 100% bit-exact numerical parity against quantized PyTorch/NumPy models with zero mismatches across 75 test suites and 100% functional coverage. Finally, I characterized the physical silicon metrics across both FPGA and ASIC nodes: on an Artix-7 FPGA it utilizes under 1.1% of logic resources at 275 MHz, in TSMC 28nm it reaches an Fmax of **1.23 GHz** at **4.27 TOPS/Watt** efficiency, and in SkyWater 130nm I generated full hierarchical GDSII physical layouts with power grids and I/O pad rings."*
+
+---
+
 ## 📄 License & Attribution
 Developed as part of the **RISC-V AI Accelerator SoC Project**. Licensed under the [MIT License](LICENSE).
