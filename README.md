@@ -6,6 +6,7 @@
 ![Target FPGA](https://img.shields.io/badge/FPGA-Terasic%20DE10--Lite%20(MAX%2010)-purple?style=for-the-badge)
 ![Verification](https://img.shields.io/badge/Verification-100%25%20Full%20SoC%20Pass-brightgreen?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Hardware-Ready%20for%20Review%20(Oct%202026)-success?style=for-the-badge)
+[![Master Portfolio](https://img.shields.io/badge/Documentation-Master%20Portfolio%20%26%20Interview%20Guide-orange?style=for-the-badge)](docs/MASTER_PORTFOLIO_AND_INTERVIEW_GUIDE.md)
 
 ---
 
